@@ -18,6 +18,5 @@ def bubble_sort(lines, line_width, window, bg_color, sort_button, sort_button_te
                 general_btn(window, sort_button, sort_button_text, (255, 0, 0))
                 pygame.display.update()
 
-    checker_review(window, bg_color, lines, sound)
 
 

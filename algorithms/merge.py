@@ -1,5 +1,4 @@
 import pygame
-from additional.checker import checker_review
 from buttons.general import general_btn
 
 def merge_sort(lines, line_width, window, bg_color, sort_button, sort_button_text, sound):

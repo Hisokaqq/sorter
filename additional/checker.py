@@ -10,5 +10,5 @@ def checker_review(window, bg_color, lines, sound):
         sound.play()
 
         line.draw(window, True)
-        pygame.time.delay(30)
+        pygame.time.delay(10)
         pygame.display.update()

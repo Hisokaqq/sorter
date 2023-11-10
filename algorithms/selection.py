@@ -1,5 +1,4 @@
 import pygame
-from additional.checker import checker_review
 from buttons.general import general_btn
 
 def selection_sort(lines, line_width, window, bg_color, sort_button, sort_button_text, sound):
@@ -28,4 +27,3 @@ def selection_sort(lines, line_width, window, bg_color, sort_button, sort_button
     # Set lines to black (is_selected=False) before checker_review
 
 
-    checker_review(window, bg_color, lines, sound)

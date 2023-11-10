@@ -5,6 +5,14 @@ from algorithms.bubble import bubble_sort
 from algorithms.selection import selection_sort
 from algorithms.insertion import insertion_sort
 from algorithms.merge import merge_sort
+from algorithms.quick import quick_sort
+from algorithms.counting import counting_sort
+from algorithms.radix import radix_sort
+from algorithms.bucket import bucket_sort
+from algorithms.heap import heap_sort
+from algorithms.shell import shell_sort
+
+from additional.checker import checker_review
 
 from buttons.general import general_btn
 
@@ -25,9 +33,8 @@ pygame.display.set_caption("Sorter")
 
 # Set the background color of the window
 bg_color = (255, 255, 255)
-
+black = (0,0,0)
 line_width = 10
-
 
 class Line:
     def __init__(self, x, y, height):
@@ -35,7 +42,7 @@ class Line:
         self.y = y
         self.height = height
         self.width = line_width
-        self.color = (0, 0, 0)  # Black
+        self.color = black  # Black
 
     def draw(self, surface, is_selected=False):
         if is_selected:
@@ -43,7 +50,6 @@ class Line:
         else:
             color = self.color
         pygame.draw.rect(surface, color, (self.x, self.y, self.width, self.height))
-
 
 # Create a list of Line objects
 lines = []
@@ -78,14 +84,12 @@ heap_button = pygame.Rect(window_width - 135 - 125 - 10 - 125 - 10 - 125 - 10 , 
 heap_button_text = font.render("Heap", True, (255, 255, 255))
 shell_button = pygame.Rect(window_width - 135 - 125 - 10 - 125 - 10 - 125 - 10 - 125 - 10, 60, 125, 40)
 shell_button_text = font.render("Shell", True, (255, 255, 255))
-linear_search_button = pygame.Rect(window_width - 135 - 125 - 10 - 125 - 10 - 125 - 10 - 125 - 10 - 155 -10, 10, 155, 40)
-linear_search_button_text = font.render("Linear Search", True, (255, 255, 255))
-binary_search_button = pygame.Rect(window_width - 135 - 125 - 10 - 125 - 10 - 125 - 10 - 125 - 10 - 155 -10, 60, 155, 40)
-binary_search_button_text = font.render("Binary Search", True, (255, 255, 255))
 reorder_button = pygame.Rect(10, 10, 125, 40)
 reorder_button_text = font.render("Reorder", True, (255, 255, 255))
 sorting_button = pygame.Rect(10, 10, 125, 40)
 sorting_button_text = font.render("Sorting...", True, (255, 255, 255))
+
+
 
 # Game loop
 while True:
@@ -98,28 +102,39 @@ while True:
         elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             if bubble_button.collidepoint(event.pos):
                 bubble_sort(lines, line_width, window, bg_color, sorting_button, sorting_button_text, sound)
+                checker_review(window, bg_color, lines, sound)
+
             elif selection_button.collidepoint(event.pos):
                 selection_sort(lines, line_width, window, bg_color, sorting_button, sorting_button_text, sound)
+                checker_review(window, bg_color, lines, sound)
             elif insertion_button.collidepoint(event.pos):
                 insertion_sort(lines, line_width, window, bg_color, sorting_button, sorting_button_text, sound)
+                checker_review(window, bg_color, lines, sound)
             elif merge_button.collidepoint(event.pos):
                 merge_sort(lines, line_width, window, bg_color, sorting_button, sorting_button_text, sound)
+                checker_review(window, bg_color, lines, sound)
             elif quick_button.collidepoint(event.pos):
-                merge_sort(lines, line_width, window, bg_color, sorting_button, sorting_button_text, sound)
+                quick_sort(lines, 0, len(lines) - 1, window, bg_color, line_width, sorting_button, sorting_button_text, sound)
+                checker_review(window, bg_color, lines, sound)
             elif counting_button.collidepoint(event.pos):
-                merge_sort(lines, line_width, window, bg_color, sorting_button, sorting_button_text, sound)
+                counting_sort(lines, window, bg_color, line_width, sorting_button, sorting_button_text, sound)
+                checker_review(window, bg_color, lines, sound)
             elif radix_button.collidepoint(event.pos):
-                merge_sort(lines, line_width, window, bg_color, sorting_button, sorting_button_text, sound)
+                radix_sort(lines, line_width, window, bg_color, sorting_button, sorting_button_text, sound)
+                checker_review(window, bg_color, lines, sound)
             elif bucket_button.collidepoint(event.pos):
-                merge_sort(lines, line_width, window, bg_color, sorting_button, sorting_button_text, sound)
+                bucket_sort(lines, line_width, window, bg_color, sorting_button, sorting_button_text, sound)
+                checker_review(window, bg_color, lines, sound)
             elif heap_button.collidepoint(event.pos):
-                merge_sort(lines, line_width, window, bg_color, sorting_button, sorting_button_text, sound)
+                heap_sort(lines, window, bg_color, line_width, sorting_button, sorting_button_text, sound)
+                checker_review(window, bg_color, lines, sound)
             elif shell_button.collidepoint(event.pos):
-                merge_sort(lines, line_width, window, bg_color, sorting_button, sorting_button_text, sound)
-            elif linear_search_button.collidepoint(event.pos):
-                merge_sort(lines, line_width, window, bg_color, sorting_button, sorting_button_text, sound)
-            elif binary_search_button.collidepoint(event.pos):
-                merge_sort(lines, line_width, window, bg_color, sorting_button, sorting_button_text, sound)
+                shell_sort(lines, line_width, window, bg_color, sorting_button, sorting_button_text, sound)
+                checker_review(window, bg_color, lines, sound)
+
+
+
+
             elif reorder_button.collidepoint(event.pos):
                 # Regenerate the list of lines with new random heights
                 lines = []
@@ -138,19 +153,17 @@ while True:
         line.draw(window)
 
     # Draw the buttons
-    general_btn(window, bubble_button, bubble_button_text, (0, 0, 0))
-    general_btn(window, selection_button, selection_button_text, (0, 0, 0))
-    general_btn(window, insertion_button, insertion_button_text, (0, 0, 0))
-    general_btn(window, merge_button, merge_button_text, (0, 0, 0))
-    general_btn(window, quick_button, quick_button_text, (0, 0, 0))
-    general_btn(window, counting_button, counting_button_text, (0, 0, 0))
-    general_btn(window, radix_button, radix_button_text, (0, 0, 0))
-    general_btn(window, bucket_button, bucket_button_text, (0, 0, 0))
-    general_btn(window, heap_button, heap_button_text, (0, 0, 0))
-    general_btn(window, shell_button, shell_button_text, (0, 0, 0))
-    general_btn(window, linear_search_button, linear_search_button_text, (0, 0, 0))
-    general_btn(window, binary_search_button, binary_search_button_text, (0, 0, 0))
-    general_btn(window, reorder_button, reorder_button_text, (0, 0, 0))
+    general_btn(window, bubble_button, bubble_button_text,black )
+    general_btn(window, selection_button, selection_button_text, black)
+    general_btn(window, insertion_button, insertion_button_text, black)
+    general_btn(window, merge_button, merge_button_text, black)
+    general_btn(window, quick_button, quick_button_text, black)
+    general_btn(window, counting_button, counting_button_text, black)
+    general_btn(window, radix_button, radix_button_text, black)
+    general_btn(window, bucket_button, bucket_button_text, black)
+    general_btn(window, heap_button, heap_button_text, black)
+    general_btn(window, shell_button, shell_button_text, black)
+    general_btn(window, reorder_button, reorder_button_text, black)
 
     # Update the display
     pygame.display.update()
