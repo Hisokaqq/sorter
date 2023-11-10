@@ -55,4 +55,3 @@ def merge(lines, line_width, window, bg_color, sort_button, sort_button_text, so
 
     # Play sound
     sound.play()
-t
