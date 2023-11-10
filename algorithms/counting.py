@@ -26,8 +26,6 @@ def counting_sort(lines, window, bg_color, line_width, sorting_button, sorting_b
         lines[i] = line
         lines[i].x = (i + 1) * line_width  # Adjust the x position of each line
 
-
-
 def update_display(arr, window, bg_color, line_width, sorting_button, sorting_button_text, sound):
     window.fill(bg_color)
     for k, line in enumerate(arr):

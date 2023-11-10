@@ -1,6 +1,4 @@
 import pygame
-
-from additional.checker import checker_review
 from buttons.general import general_btn
 
 def bubble_sort(lines, line_width, window, bg_color, sort_button, sort_button_text, sound):
@@ -17,6 +15,3 @@ def bubble_sort(lines, line_width, window, bg_color, sort_button, sort_button_te
                     line.draw(window, is_selected=k == j or k == j + 1)
                 general_btn(window, sort_button, sort_button_text, (255, 0, 0))
                 pygame.display.update()
-
-
-

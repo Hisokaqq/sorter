@@ -90,7 +90,6 @@ sorting_button = pygame.Rect(10, 10, 125, 40)
 sorting_button_text = font.render("Sorting...", True, (255, 255, 255))
 
 
-
 # Game loop
 while True:
     # Handle events
@@ -131,9 +130,6 @@ while True:
             elif shell_button.collidepoint(event.pos):
                 shell_sort(lines, line_width, window, bg_color, sorting_button, sorting_button_text, sound)
                 checker_review(window, bg_color, lines, sound)
-
-
-
 
             elif reorder_button.collidepoint(event.pos):
                 # Regenerate the list of lines with new random heights

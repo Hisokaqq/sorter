@@ -55,5 +55,4 @@ def merge(lines, line_width, window, bg_color, sort_button, sort_button_text, so
 
     # Play sound
     sound.play()
-
-# Call the merge_sort function instead of bubble_sort
+t

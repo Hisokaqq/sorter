@@ -50,6 +50,3 @@ def update_display(lines, window, bg_color, line_width, sorting_button, sorting_
     pygame.display.update()
     sound.play()
     pygame.time.delay(20)
-
-# To use radix_sort, call it like this in your event handling section where the sorting button is clicked:
-# radix_sort(lines, line_width, window, bg_color, sorting_button, sorting_button_text, sound)

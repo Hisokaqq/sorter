@@ -43,7 +43,3 @@ def update_display(lines, window, bg_color, line_width, sorting_button, sorting_
     pygame.display.update()
     sound.play()
     pygame.time.delay(delay)  # Delay in milliseconds
-
-
-# To use bucket_sort, call it like this in your event handling section where the sorting button is clicked:
-# bucket_sort(lines, line_width, window, bg_color, sorting_button, sorting_button_text, sound)

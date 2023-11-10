@@ -23,7 +23,3 @@ def selection_sort(lines, line_width, window, bg_color, sort_button, sort_button
             # Draw the sort button
             general_btn(window, sort_button, sort_button_text, (255, 0, 0))
             pygame.display.update()
-
-    # Set lines to black (is_selected=False) before checker_review
-
-

@@ -1,7 +1,6 @@
 import pygame
 from buttons.general import general_btn
 
-
 def shell_sort(lines, line_width, window, bg_color, sorting_button, sorting_button_text, sound):
     n = len(lines)
     gap = n // 2
@@ -22,9 +21,6 @@ def shell_sort(lines, line_width, window, bg_color, sorting_button, sorting_butt
         gap //= 2
 
 
-
-
-
 def update_display(arr, window, bg_color, line_width, sorting_button, sorting_button_text, sound, current_index=None):
     window.fill(bg_color)
     for k, line in enumerate(arr):
@@ -35,6 +31,3 @@ def update_display(arr, window, bg_color, line_width, sorting_button, sorting_bu
     pygame.display.update()
     sound.play()
     pygame.time.delay(10)
-
-
-# To use heap_sort

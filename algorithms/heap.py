@@ -44,5 +44,3 @@ def update_display(arr, window, bg_color, line_width, sorting_button, sorting_bu
     pygame.display.update()
     sound.play()
     pygame.time.delay(10)
-
-# To use heap_sort

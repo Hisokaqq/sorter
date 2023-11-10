@@ -1,6 +1,5 @@
 import pygame
 
-
 def checker_review(window, bg_color, lines, sound):
     window.fill ( bg_color )
     for line in lines :
