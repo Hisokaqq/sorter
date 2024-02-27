@@ -16,6 +16,8 @@ from additional.checker import checker_review
 
 from buttons.general import general_btn
 
+line_width = 10
+
 # Initialize Pygame
 pygame.mixer.init()
 pygame.init()
@@ -34,7 +36,6 @@ pygame.display.set_caption("Sorter")
 # Set the background color of the window
 bg_color = (255, 255, 255)
 black = (0,0,0)
-line_width = 10
 
 class Line:
     def __init__(self, x, y, height):
@@ -94,10 +95,11 @@ sorting_button_text = font.render("Sorting...", True, (255, 255, 255))
 while True:
     # Handle events
     for event in pygame.event.get():
-        if event.type == pygame.QUIT:
+        if event.type == pygame.QUIT or event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
             # Exit the game
             pygame.quit()
             exit()
+
         elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             if bubble_button.collidepoint(event.pos):
                 bubble_sort(lines, line_width, window, bg_color, sorting_button, sorting_button_text, sound)
